@@ -18,6 +18,83 @@ Es posible usar estas ideas para construir algo análogo a las tuberías Unix co
 
 Cuesta un poco acostumbrarse, pero este estilo implícito de dependencia de tipos es una de las cosas más productivas de Go.
 
-## Structs vs Clases
+## Structs
 
-El objetivo d euna clase es definir una serie de propiedades y métodos que un objeto puede usar para alcanzar diferentes objetivos. Go utiliza Structs para generar **nuevos tipos** de datos que se pueden utilizar para cumplir tareas específicas.
+Son una colección tipada de campos, útiles para agrupaciones de datos que forman registros. Al igual que cualquier tipo en Go, permiten que se le añadan métodos modelando así el comportamiento del mismo de manera similar a como funciona una clase.
+
+```go
+package main
+
+import (
+    "fmt"
+)
+
+func main() {
+    var gopher = struct {
+        Name string
+        Age int
+        Color string
+    } {"Jack", 10, "Blue"}
+
+    fmt.Println(gopher)
+}
+```
+
+Esta práctica no es la más común y lo que se suele utilizar son los **typed structs** o **type** aslias **struct**, que vienen a ser como cualquier type alias salvo que en los structs suele pasar desapercibido y entender que es la manera natural de ser.
+
+```go
+package main
+
+import (
+    "fmt"
+)
+
+func main() {
+    g := gopher{"Jack", 10, "Blue"}
+
+    fmt.Println(g)
+}
+
+type gopher struct {
+    Name string
+    Age int
+    Color string
+}
+```
+
+### Structs vs Clases
+
+* El objetivo de una clase es definir una serie de propiedades y métodos que un objeto puede usar para alcanzar diferentes objetivos. 
+
+* Go utiliza Structs para generar **nuevos tipos** de datos que se pueden utilizar para cumplir tareas específicas.
+
+
+## Métodos y Funciones
+
+
+## Constructores
+
+Permiten la instanciación de una clase a un objeto, permite definir propiedades predefinidas. En go se puede utilizar funciones que puedan crear structs con propiedades que se pasna como parámetros.
+
+## Herencia
+
+Permite reutilizar código e implementar el polimorfismo.
+
+Go aplica composición sobre herencia. A diferencia de la herencia, no es una clase de hija sino que contienen los métodos de las clases indicadas.
+
+Para alcanzar este mismo objetivo, Go aplica un principio llamado Composition Over Inheritance que utilizando un campo anónimo en un struct puede "heredar" todas las propiedades y métodos.
+
+## Interfaces
+
+Diferentes lenguajes de programación utilizan sintaxis explícita para decir que una clase implementa una interfaz. Go lo hace de manera implícita, lo que permite la reutilización de código y el polimorfismo.
+
+### Abstract Factory
+
+
+
+
+## Bibliografía
+
+* https://blog.friendsofgo.tech/posts/orientacion_a_objetos_structs/
+
+
